@@ -14,16 +14,16 @@ body{
     background-color: rgb(39, 39, 39);
     font-size: 1.5em;
     font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+    position: relative;
 }
 
 
 .title {
     color: var(--text);
-    background-color: var(--secon-background-color);
-    margin-bottom: 3%;
-    padding: 15px;
     font-weight: bold;
     text-align: center;
+    position: -webkit-sticky;
+    position: sticky;
 }
 
 p{
@@ -56,6 +56,14 @@ p{
 
 }
 
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secon-background-color);
+    margin-bottom: 3%;
+    padding: 10px;
+}
 
 .rating{
     color: rgb(255, 251, 0);
@@ -63,7 +71,7 @@ p{
 }
 
 .person{
-    width: 33%;
+    width: 80%;
     background-color: var(--main-color);
     border-radius: 3%;
     padding: 3%;
@@ -73,9 +81,9 @@ p{
 
 }
 .person:hover{
-    width: 50%;
-    background-color: var(--main-color);
-    border-radius: 3%;
+    width: 80%;
+    background-color: rgb(41, 121, 114) ;
+    border-radius: 5%;
     padding: 3%;
     margin: 1%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.61), 0 6px 20px 0 rgba(0, 0, 0, 0.61);
@@ -84,9 +92,13 @@ p{
 }
 
 #person-container{
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
     color: var(--text);
-    margin: 5% 15% 5% 15%;
+    align-content: stretch;
+    margin: 3%;
+    justify-content: stretch;  
     
 }
 
@@ -113,4 +125,12 @@ button:hover, button:disabled{
     -webkit-box-shadow: inset 5px 5px 17px 3px var(--secon-background-color); 
     box-shadow: inset 5px 5px 17px 3px var(--secon-background-color);
     color: var(--secon-background-color);
+}
+
+#info{
+    width: 1.5em;
+    height: 1.5em;
+    display: block;
+    margin-left: 1%;
+    align-self: center
 }

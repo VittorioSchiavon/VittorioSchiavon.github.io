@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Team Members</title>
+    <title>TODAY I FAPPED TO:</title>
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1 class="title">MY TEAM MEMBERghjklS</h1>
-    <button id="button" onclick="getMembers()">GET MEMBERS</button>
+<body onload="getMembers()">
+    <header>
+        <h1 class="title">TODAY I FAPPED TO</h1>
+        <img id="info" src="/images/infoIcon.png" onclick="alertInfo()">
+    </header>
+    <button id="button" onclick="getMembers()">UPDATE</button>
     <div id="person-container">
-        <img id="person-image" onclick="">
-        <p id="person-name"></p>
-        <p id="person-age"></p>
-        <p id="rating"></p>
     </div>
 </body>
 </html>
