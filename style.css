@@ -1,0 +1,116 @@
+:root {
+    --text: rgb(231, 231, 231);
+    --main-color: rgb(67, 196, 185);
+    --secon-background-color: rgb(59, 59, 59);
+  }
+
+*{
+    margin: 0;
+    padding: 0;
+    user-select: none;  
+
+}
+body{
+    background-color: rgb(39, 39, 39);
+    font-size: 1.5em;
+    font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+}
+
+
+.title {
+    color: var(--text);
+    background-color: var(--secon-background-color);
+    margin-bottom: 3%;
+    padding: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+p{
+    font-weight: bold;
+    font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+    text-align: center;
+    font-size: 1em;
+}
+
+.name{
+    font-size: 1.2em;
+    text-align: center;
+    margin: 5%;
+    
+}
+
+.age{
+    font-size: 1em;
+    text-align: center;
+    margin: 5%;
+}
+
+.image{
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.61), 0 6px 20px 0 rgba(0, 0, 0, 0.61);
+
+}
+
+
+.rating{
+    color: rgb(255, 251, 0);
+    margin: 5%;
+}
+
+.person{
+    width: 33%;
+    background-color: var(--main-color);
+    border-radius: 3%;
+    padding: 3%;
+    margin: 1%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.61), 0 6px 20px 0 rgba(0, 0, 0, 0.61);
+    user-select: none;  
+
+}
+.person:hover{
+    width: 50%;
+    background-color: var(--main-color);
+    border-radius: 3%;
+    padding: 3%;
+    margin: 1%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.61), 0 6px 20px 0 rgba(0, 0, 0, 0.61);
+    user-select: none;  
+
+}
+
+#person-container{
+    display: flex;
+    color: var(--text);
+    margin: 5% 15% 5% 15%;
+    
+}
+
+button{
+    display: block; 
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--main-color);
+    -webkit-box-shadow: 5px 5px 17px 3px var(--secon-background-color); 
+    box-shadow: 5px 5px 17px 3px var(--secon-background-color);
+    width: 50%;
+    height: 50px;
+    border: 7px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;
+    text-align: center;
+    font-size: 1em;
+    border-style: hidden;
+}
+
+button:hover, button:disabled{
+    -webkit-box-shadow: inset 5px 5px 17px 3px var(--secon-background-color); 
+    box-shadow: inset 5px 5px 17px 3px var(--secon-background-color);
+    color: var(--secon-background-color);
+}
