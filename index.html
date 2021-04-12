@@ -4,17 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TODAY I FAPPED TO:</title>
+    <title>Vittorio Schiavon Museum</title>
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body onload="getMembers()">
-    <header>
-        <h1 class="title">TODAY I FAPPED TO</h1>
-        <img id="info" src="/images/infoIcon.png" onclick="alertInfo()">
-    </header>
-    <button id="button" onclick="getMembers()">UPDATE</button>
-    <div id="person-container">
+<body>
+    <div id="game-board" onclick="move()">
+        <div id="player"></div>
     </div>
 </body>
 </html>
