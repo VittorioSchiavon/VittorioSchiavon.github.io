@@ -1,28 +1,53 @@
+:root{
+    --unit: 8vmin;
+}
 body{
     width: 100vw;
     height: 100vh;
-    background-color: rgb(7, 35, 78);
+    background-color: rgb(46, 20, 8);
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0;
+    image-rendering: pixelated;
 
 }
 #game-board{
-    width: 80vmin;
-    height: 60vmin;
-    background-color: rgb(218, 137, 32);
-    border: 7px solid rgb(145, 83, 12);
+    width: calc(var(--unit)*10);
+    height: calc(var(--unit)*8);
+    background-color: rgb(44, 44, 44);
+    border: 8px solid rgb(145, 83, 12);
     padding:0;
+    overflow: hidden;
+    -webkit-box-shadow: 5px 5px 5px 3px #000000; 
+    box-shadow: 5px 5px 5px 3px #000000;
 }
 
+
 #player{
-    width: 3vmin;
-    height: 3vmin;
-    background-color: indigo;
+    background-image:url("images/Vittorio-0-0.png");
+    background-size: var(--unit);
+    width: var(--unit);
+    height: var(--unit);
+    margin:0;
+    padding:0;
+    position: absolute;
+    top: calc(50vh - var(--unit)/2);
+    left: calc(50vw - var(--unit)/2);
+    z-index: 2;
+
+}
+
+#background{
+    background-image:url("images/background.png");
+    background-size: calc(var(--unit)*30);
+    width:calc(var(--unit)*30);
+    height: calc(var(--unit)*30);
     margin:0;
     padding:0;
     position: relative;
-    top: 10vmin;
-    left: 20vmin;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
+
