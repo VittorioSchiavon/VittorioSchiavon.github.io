@@ -16,11 +16,11 @@ var changeImage=true;
 setInterval(function(){changeImage=true;},100);
 
 
-function shiftImage() {
+function shiftImage(dir) {
     if(changeImage){
-        player.style.backgroundImage=`url(images/Vittorio-0-${imageX}.png)`;
+        player.style.backgroundImage=`url(images/Vittorio/V-${dir}-${imageX}.png)`;
         imageX++;
-        if(imageX==4){
+        if(imageX==3){
             imageX=0;
         }
         changeImage=false;
@@ -30,7 +30,7 @@ function shiftImage() {
 
 document.addEventListener("keyup", event=>{
     imageX=0;
-    shiftImage();
+    shiftImage(0);
 })
 
 
@@ -41,7 +41,7 @@ function moveLeft(moveSpeed){
         background.style.left = x + "px";
         
     }
-    shiftImage();
+    shiftImage(moveSpeed>0 ? 2 : 1);
 }
 function moveTop(moveSpeed){
     console.log(y);
@@ -50,7 +50,7 @@ function moveTop(moveSpeed){
         background.style.top = y +"px";
         
     }
-    shiftImage();
+    shiftImage(moveSpeed>0 ? 3 : 0);
 }
 
 

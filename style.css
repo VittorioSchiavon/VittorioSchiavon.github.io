@@ -1,5 +1,5 @@
 :root{
-    --unit: 8vmin;
+    --unit: 10vmin;
 }
 body{
     width: 100vw;
@@ -25,7 +25,7 @@ body{
 
 
 #player{
-    background-image:url("images/Vittorio-0-0.png");
+    background-image:url("images/Vittorio/V-0-0.png");
     background-size: var(--unit);
     width: var(--unit);
     height: var(--unit);
@@ -34,8 +34,22 @@ body{
     position: absolute;
     top: calc(50vh - var(--unit)/2);
     left: calc(50vw - var(--unit)/2);
-    z-index: 2;
+    z-index: 3;
 
+}
+
+#shadow{
+
+    background-image:url("images/shadow.png");
+    background-size: var(--unit);
+    width: var(--unit);
+    height: calc(var(--unit)*1.25);
+    margin:0;
+    padding:0;
+    position: absolute;
+    top: calc(50vh - var(--unit)/2);
+    left: calc(50vw - var(--unit)/2);
+    z-index: 4;
 }
 
 #background{
