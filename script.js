@@ -8,6 +8,7 @@ var clicked=false;
 var squares=0;
 var obstacleMode=false;
 var borderString="";
+var activeCode;
 
 class Player{
     constructor(){
@@ -50,7 +51,7 @@ class Background{
     }
     move(moveLeft, moveTop){
         
-        if(obstacleMode ||( this.checkBorders(moveLeft,moveTop) && obstaclesEl.checkObstacle(this.x +PlayerEl.speed*moveLeft,this.y +PlayerEl.speed*moveTop)!=0)){
+        if(obstacleMode ||( this.checkBorders(moveLeft,moveTop) && obstaclesEl.checkObstacle(this.x +unit/2*moveLeft,this.y +unit*moveTop)!=0)){
             this.x +=PlayerEl.speed*moveLeft;
             this.y +=PlayerEl.speed*moveTop;
             this.element.style.left = this.x + "px";
@@ -63,7 +64,8 @@ class Background{
     
     checkBorders(movementLeft, movementTop){
         if(movementLeft){
-            if(this.x+movementLeft*PlayerEl.speed>unit*5-unit/2 || this.x+movementLeft*PlayerEl.speed<-this.width+unit*10-unit*5+unit/2) return false;
+            if(this.x+movementLeft*PlayerEl.speed>unit*5-unit/2 || this.x+movementLeft*PlayerEl.speed<-this.width+unit*10-unit*5+unit/2)
+            return false;
         };
         if(movementTop){
             if(this.y+movementTop*PlayerEl.speed>unit*4 || this.y+movementTop*PlayerEl.speed<-this.height+unit*8-unit*4+unit/2) return false;
@@ -89,44 +91,61 @@ class Obstacles{
     }
     
     checkObstacle(left,top){
-        return this.obs[-(Math.floor(left/unit)-4)][-(Math.floor(top/unit)-3)];
+        return this.obs[-(Math.floor(left/unit)-5)][-(Math.floor(top/unit)-4)];
     }
 
     setObstacle(){ 
-        this.obs[3][7] = 0;
-        this.obs[1][1]=4;
-        this.obs[1][2]=4;
-        this.obs[1][3]=4;
-        this.obs[1][4]=4;
-        this.obs[1][5]=4;
-        this.obs[2][1]=4;
-        this.obs[2][2]=4;
-        this.obs[2][3]=4;
-        this.obs[2][4]=4;
-        this.obs[2][5]=4;
-this.obs[4][7] = 0;
-this.obs[5][7] = 0;
-this.obs[6][7] = 0;
-this.obs[6][6] = 0;
-this.obs[7][6] = 0;
-this.obs[7][4] = 0;
-this.obs[7][5] = 0;
-this.obs[8][5] = 0;
-this.obs[9][4] = 0;
-this.obs[10][4] = 0;
-this.obs[10][4] = 0;
-this.obs[10][5] = 0;
-this.obs[9][5] = 0;
-this.obs[9][6] = 0;
-this.obs[10][6] = 0;
-this.obs[12][6] = 0;
-this.obs[11][6] = 0;
-this.obs[11][7] = 0;
-this.obs[12][7] = 0;
-this.obs[12][9] = 0;
-this.obs[12][8] = 0;
-this.obs[12][10] = 0;
-this.obs[11][10] = 0;
+        this.obs[1][12] = 0;
+this.obs[2][12] = 0;
+this.obs[3][12] = 0;
+this.obs[4][12] = 0;
+this.obs[5][12] = 0;
+this.obs[6][12] = 0;
+this.obs[7][12] = 0;
+this.obs[7][11] = 0;
+this.obs[6][11] = 0;
+this.obs[4][11] = 0;
+this.obs[5][11] = 0;
+this.obs[2][11] = 0;
+this.obs[3][11] = 0;
+this.obs[1][11] = 0;
+this.obs[1][10] = 0;
+this.obs[2][10] = 0;
+this.obs[3][10] = 0;
+this.obs[4][10] = 0;
+this.obs[5][10] = 0;
+this.obs[7][10] = 0;
+this.obs[6][10] = 0;
+this.obs[14][12] = 0;
+this.obs[14][13] = 0;
+this.obs[14][14] = 0;
+this.obs[14][15] = 0;
+this.obs[14][16] = 0;
+this.obs[14][17] = 0;
+this.obs[14][18] = 0;
+this.obs[14][19] = 0;
+this.obs[14][20] = 0;
+this.obs[14][22] = 0;
+this.obs[14][21] = 0;
+this.obs[14][23] = 0;
+this.obs[14][25] = 0;
+this.obs[14][24] = 0;
+this.obs[14][26] = 0;
+this.obs[14][28] = 0;
+this.obs[14][27] = 0;
+this.obs[14][29] = 0;
+this.obs[14][30] = 0;
+this.obs[6][13] = 101;
+this.obs[5][13] = 101;
+this.obs[4][13] = 101;
+this.obs[2][13] = 101;
+this.obs[3][13] = 101;
+this.obs[3][14] = 101;
+this.obs[2][14] = 101;
+this.obs[4][14] = 101;
+this.obs[5][14] = 101;
+this.obs[6][14] = 101;
+
     }
 }
 
@@ -142,10 +161,17 @@ var t = setInterval(function(){
         //console.log(obstaclesEl.obs);
         //console.log(backgroundEl.x);
     }
-    if(obstaclesEl.checkObstacle(backgroundEl.x,backgroundEl.y)>1){
-        document.getElementById("background").style.filter="invert(100%)";
+    let code=obstaclesEl.checkObstacle(backgroundEl.x,backgroundEl.y);
+    if(code>1){
+        activeCode = code;
+        //document.getElementById("background").style.filter="invert(100%)";
+        document.getElementById(`panel-${activeCode}`).style.display = "block";
     }else{
-        document.getElementById("background").style.filter="invert(0%)";
+        //document.getElementById("background").style.filter="invert(0%)";
+        if(activeCode!== code && activeCode>0){ 
+            document.getElementById(`panel-${activeCode}`).style.display = "none";
+            activeCode=-1;
+        }
     }
 },60);
 
