@@ -5,6 +5,9 @@ var r=0;
 var u=0;
 var d=0;
 var clicked=false;
+var squares=0;
+var obstacleMode=false;
+var borderString="";
 
 class Player{
     constructor(){
@@ -14,7 +17,7 @@ class Player{
         this.changeImage=true;
         this.x = parseFloat(window.getComputedStyle(player).getPropertyValue("left"));
         this.y = parseFloat(window.getComputedStyle(player).getPropertyValue("top"));
-        this.speed = parseFloat(window.getComputedStyle(player).getPropertyValue("width"))/4;
+        this.speed = unit/4;
     }
 
     updateImage(l,t) {
@@ -47,12 +50,14 @@ class Background{
     }
     move(moveLeft, moveTop){
         
-        if(this.checkBorders(moveLeft,moveTop)){
+        if(obstacleMode ||( this.checkBorders(moveLeft,moveTop) && obstaclesEl.checkObstacle(this.x +PlayerEl.speed*moveLeft,this.y +PlayerEl.speed*moveTop))){
             this.x +=PlayerEl.speed*moveLeft;
             this.y +=PlayerEl.speed*moveTop;
             this.element.style.left = this.x + "px";
             this.element.style.top = this.y + "px";
+            moveSquares(moveLeft, moveTop);
         }
+        
         PlayerEl.updateImage(moveLeft,moveTop);
     }
     
@@ -67,14 +72,99 @@ class Background{
     }
 }
 
+class Obstacles{
+    constructor(){
+        this.obs= new Array(Math.ceil(backgroundEl.width/unit));
+
+        for (var i = 0; i < this.obs.length; i++) {
+            this.obs[i] = new Array(Math.floor(backgroundEl.height/unit));
+        }
+        for (var i = 0; i < Math.floor(backgroundEl.width/unit); i++) {
+            for (var j = 0; j < Math.floor(backgroundEl.height/unit); j++) {
+                this.obs[i][j] = 0;
+            }
+        }
+
+          
+    }
+    
+    checkObstacle(left,top){
+        //console.log(-(Math.floor(left/unit)-4));
+        //console.log(-(Math.floor(top/unit)-3));
+        return this.obs[-(Math.floor(left/unit)-4)][-(Math.floor(top/unit)-3)] ===0 ? true : false;
+    }
+
+    setObstacle(){ 
+        this.obs[3][2] = 1;
+this.obs[4][2] = 1;
+this.obs[5][2] = 1;
+this.obs[6][2] = 1;
+this.obs[7][2] = 1;
+this.obs[9][2] = 1;
+this.obs[8][2] = 1;
+this.obs[10][2] = 1;
+this.obs[11][2] = 1;
+this.obs[11][2] = 1;
+this.obs[12][2] = 1;
+this.obs[13][2] = 1;
+this.obs[13][4] = 1;
+this.obs[13][3] = 1;
+this.obs[13][5] = 1;
+this.obs[13][6] = 1;
+this.obs[13][7] = 1;
+this.obs[13][8] = 1;
+this.obs[13][9] = 1;
+this.obs[13][10] = 1;
+this.obs[13][11] = 1;
+this.obs[13][12] = 1;
+this.obs[13][13] = 1;
+this.obs[13][15] = 1;
+this.obs[13][14] = 1;
+this.obs[13][17] = 1;
+this.obs[13][16] = 1;
+this.obs[12][16] = 1;
+this.obs[11][16] = 1;
+this.obs[10][16] = 1;
+this.obs[9][16] = 1;
+this.obs[8][16] = 1;
+this.obs[6][16] = 1;
+this.obs[7][16] = 1;
+this.obs[4][16] = 1;
+this.obs[5][16] = 1;
+this.obs[3][16] = 1;
+this.obs[1][16] = 1;
+this.obs[2][16] = 1;
+this.obs[2][15] = 1;
+this.obs[2][15] = 1;
+this.obs[2][14] = 1;
+this.obs[2][13] = 1;
+this.obs[2][13] = 1;
+this.obs[2][12] = 1;
+this.obs[2][11] = 1;
+this.obs[2][9] = 1;
+this.obs[2][10] = 1;
+this.obs[2][8] = 1;
+this.obs[2][6] = 1;
+this.obs[2][7] = 1;
+this.obs[2][5] = 1;
+this.obs[2][4] = 1;
+this.obs[2][3] = 1;
+this.obs[2][3] = 1;
+this.obs[2][2] = 1;
+    }
+}
+
 var backgroundEl = new Background();
 var PlayerEl = new Player();
-
+var obstaclesEl= new Obstacles();
+obstaclesEl.setObstacle();
 
 var t = setInterval(function(){
     PlayerEl.changeImage=true;
     if(clicked || l-d-r+u!=0 ){
         backgroundEl.move(l+r,u+d);
+        //console.log(obstaclesEl.obs);
+        //console.log(backgroundEl.x);
     }
 },60);
 
@@ -94,6 +184,25 @@ document.addEventListener("keydown", event=>{
     if(event.key==="ArrowRight"|| event.key==="d") r=-1;
     if(event.key==="ArrowUp"|| event.key==="w") u=1;
     if(event.key==="ArrowDown"|| event.key==="s") d=-1;
+    if(event.key==="o"|| event.key==="p"){
+        if(obstacleMode) createSquare();
+    }
+    if(event.key==="g") {
+        console.log("obstacle mode activated");
+        obstacleMode=true;
+        PlayerEl.speed=unit;
+        PlayerEl.element.style.left= unit*4 + "px";
+        PlayerEl.element.style.top= unit*3 + "px";
+        backgroundEl.element.style.left= unit*4 + "px";
+        backgroundEl.element.style.top= unit*3 + "px";
+        backgroundEl.x= unit*4;
+        backgroundEl.y= unit*3;
+        PlayerEl.element.style.filter = "invert(100%)"; 
+        document.getElementById("shadow").style.left =  unit*4 + "px";
+        document.getElementById("shadow").style.top=  unit*3 + "px";
+        console.log(PlayerEl.x/unit);
+
+    } 
 });
 
 
@@ -125,4 +234,34 @@ function mouseMove(event) {
     }else if (event.clientY > ((window.innerHeight/2)+unit)) {
         d=-1;
     }     
+}
+
+function moveSquares(moveLeft, moveTop){
+    for (var i = 0; i < squares; i++) {
+
+        var el = document.getElementById(`highlight${i}`);
+       
+        el.style.top= parseFloat(el.style.top)+ PlayerEl.speed*moveTop + "px";
+        el.style.left= parseFloat(el.style.left)+ PlayerEl.speed*moveLeft + "px";
+ 
+    }
+}
+
+
+function createSquare() {
+    obstaclesEl.obs[-(backgroundEl.x/unit-5)][-(backgroundEl.y/unit-4)] = 1;
+    console.log(borderString+=`this.obs[${-(backgroundEl.x/unit-5)}][${-(backgroundEl.y/unit-4)}] = 1;\n`);
+    var mydiv = document.createElement("div");
+    mydiv.id = `highlight${squares}`;
+    mydiv.style.left= 4*unit+"px";
+    mydiv.style.top=3*unit+"px";
+    mydiv.style.width = unit+"px";
+    mydiv.style.backgroundColor = "rgba(255, 0, 0, 0.20)";
+    mydiv.style.height = unit +"px";
+    mydiv.style.margin=0;
+    mydiv.style.padding=0;
+    mydiv.style.position= "absolute";
+    mydiv.style.zIndex=30;
+    document.getElementById("game-board").appendChild(mydiv);
+    squares++;
 }

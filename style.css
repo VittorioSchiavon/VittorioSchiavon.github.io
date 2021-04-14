@@ -19,6 +19,7 @@ body{
     border: 8px solid rgb(145, 83, 12);
     padding:0;
     overflow: hidden;
+    position: relative;
     -webkit-box-shadow: 5px 5px 5px 3px #000000; 
     box-shadow: 5px 5px 5px 3px #000000;
 }
@@ -32,9 +33,10 @@ body{
     margin:0;
     padding:0;
     position: absolute;
-    top: calc(50vh - var(--unit)/2);
-    left: calc(50vw - var(--unit)/2);
-    z-index: 3;
+    top: calc(var(--unit)*3.5);
+    left: calc(var(--unit)*4.5);
+    z-index: 5;
+    
 
 }
 
@@ -47,9 +49,19 @@ body{
     margin:0;
     padding:0;
     position: absolute;
-    top: calc(50vh - var(--unit)/2);
-    left: calc(50vw - var(--unit)/2);
+    top: calc(var(--unit)*3.5);
+    left: calc(var(--unit)*4.5);
     z-index: 4;
+}
+
+.highlight{
+    width: var(--unit);
+    height: var(--unit);
+    background-color: rgba(255, 0, 0, 0.20);
+    margin:0;
+    padding:0;
+    position: relative;
+    z-index: 601;
 }
 
 #background{
@@ -64,4 +76,3 @@ body{
     left: 0;
     z-index: 1;
 }
-
