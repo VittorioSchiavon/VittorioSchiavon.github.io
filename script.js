@@ -50,7 +50,7 @@ class Background{
     }
     move(moveLeft, moveTop){
         
-        if(obstacleMode ||( this.checkBorders(moveLeft,moveTop) && obstaclesEl.checkObstacle(this.x +PlayerEl.speed*moveLeft,this.y +PlayerEl.speed*moveTop))){
+        if(obstacleMode ||( this.checkBorders(moveLeft,moveTop) && obstaclesEl.checkObstacle(this.x +PlayerEl.speed*moveLeft,this.y +PlayerEl.speed*moveTop)!=0)){
             this.x +=PlayerEl.speed*moveLeft;
             this.y +=PlayerEl.speed*moveTop;
             this.element.style.left = this.x + "px";
@@ -81,7 +81,7 @@ class Obstacles{
         }
         for (var i = 0; i < Math.floor(backgroundEl.width/unit); i++) {
             for (var j = 0; j < Math.floor(backgroundEl.height/unit); j++) {
-                this.obs[i][j] = 0;
+                this.obs[i][j] = 1;
             }
         }
 
@@ -89,68 +89,44 @@ class Obstacles{
     }
     
     checkObstacle(left,top){
-        //console.log(-(Math.floor(left/unit)-4));
-        //console.log(-(Math.floor(top/unit)-3));
-        return this.obs[-(Math.floor(left/unit)-4)][-(Math.floor(top/unit)-3)] ===0 ? true : false;
+        return this.obs[-(Math.floor(left/unit)-4)][-(Math.floor(top/unit)-3)];
     }
 
     setObstacle(){ 
-        this.obs[3][2] = 1;
-this.obs[4][2] = 1;
-this.obs[5][2] = 1;
-this.obs[6][2] = 1;
-this.obs[7][2] = 1;
-this.obs[9][2] = 1;
-this.obs[8][2] = 1;
-this.obs[10][2] = 1;
-this.obs[11][2] = 1;
-this.obs[11][2] = 1;
-this.obs[12][2] = 1;
-this.obs[13][2] = 1;
-this.obs[13][4] = 1;
-this.obs[13][3] = 1;
-this.obs[13][5] = 1;
-this.obs[13][6] = 1;
-this.obs[13][7] = 1;
-this.obs[13][8] = 1;
-this.obs[13][9] = 1;
-this.obs[13][10] = 1;
-this.obs[13][11] = 1;
-this.obs[13][12] = 1;
-this.obs[13][13] = 1;
-this.obs[13][15] = 1;
-this.obs[13][14] = 1;
-this.obs[13][17] = 1;
-this.obs[13][16] = 1;
-this.obs[12][16] = 1;
-this.obs[11][16] = 1;
-this.obs[10][16] = 1;
-this.obs[9][16] = 1;
-this.obs[8][16] = 1;
-this.obs[6][16] = 1;
-this.obs[7][16] = 1;
-this.obs[4][16] = 1;
-this.obs[5][16] = 1;
-this.obs[3][16] = 1;
-this.obs[1][16] = 1;
-this.obs[2][16] = 1;
-this.obs[2][15] = 1;
-this.obs[2][15] = 1;
-this.obs[2][14] = 1;
-this.obs[2][13] = 1;
-this.obs[2][13] = 1;
-this.obs[2][12] = 1;
-this.obs[2][11] = 1;
-this.obs[2][9] = 1;
-this.obs[2][10] = 1;
-this.obs[2][8] = 1;
-this.obs[2][6] = 1;
-this.obs[2][7] = 1;
-this.obs[2][5] = 1;
-this.obs[2][4] = 1;
-this.obs[2][3] = 1;
-this.obs[2][3] = 1;
-this.obs[2][2] = 1;
+        this.obs[3][7] = 0;
+        this.obs[1][1]=4;
+        this.obs[1][2]=4;
+        this.obs[1][3]=4;
+        this.obs[1][4]=4;
+        this.obs[1][5]=4;
+        this.obs[2][1]=4;
+        this.obs[2][2]=4;
+        this.obs[2][3]=4;
+        this.obs[2][4]=4;
+        this.obs[2][5]=4;
+this.obs[4][7] = 0;
+this.obs[5][7] = 0;
+this.obs[6][7] = 0;
+this.obs[6][6] = 0;
+this.obs[7][6] = 0;
+this.obs[7][4] = 0;
+this.obs[7][5] = 0;
+this.obs[8][5] = 0;
+this.obs[9][4] = 0;
+this.obs[10][4] = 0;
+this.obs[10][4] = 0;
+this.obs[10][5] = 0;
+this.obs[9][5] = 0;
+this.obs[9][6] = 0;
+this.obs[10][6] = 0;
+this.obs[12][6] = 0;
+this.obs[11][6] = 0;
+this.obs[11][7] = 0;
+this.obs[12][7] = 0;
+this.obs[12][9] = 0;
+this.obs[12][8] = 0;
+this.obs[12][10] = 0;
+this.obs[11][10] = 0;
     }
 }
 
@@ -165,6 +141,11 @@ var t = setInterval(function(){
         backgroundEl.move(l+r,u+d);
         //console.log(obstaclesEl.obs);
         //console.log(backgroundEl.x);
+    }
+    if(obstaclesEl.checkObstacle(backgroundEl.x,backgroundEl.y)>1){
+        document.getElementById("background").style.filter="invert(100%)";
+    }else{
+        document.getElementById("background").style.filter="invert(0%)";
     }
 },60);
 
@@ -249,8 +230,8 @@ function moveSquares(moveLeft, moveTop){
 
 
 function createSquare() {
-    obstaclesEl.obs[-(backgroundEl.x/unit-5)][-(backgroundEl.y/unit-4)] = 1;
-    console.log(borderString+=`this.obs[${-(backgroundEl.x/unit-5)}][${-(backgroundEl.y/unit-4)}] = 1;\n`);
+    //obstaclesEl.obs[-(backgroundEl.x/unit-5)][-(backgroundEl.y/unit-4)] = 0;
+    console.log(borderString+=`this.obs[${-(backgroundEl.x/unit-5)}][${-(backgroundEl.y/unit-4)}] = 0;\n`);
     var mydiv = document.createElement("div");
     mydiv.id = `highlight${squares}`;
     mydiv.style.left= 4*unit+"px";
