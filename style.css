@@ -15,13 +15,14 @@ body{
 #game-board{
     width: calc(var(--unit)*10);
     height: calc(var(--unit)*8);
-    background-color: rgb(44, 44, 44);
-    border: 8px solid rgb(145, 83, 12);
+    background-color: rgb(51,42,35);
+    border: 8px solid rgb(217,181,152);
     padding:0;
     overflow: hidden;
     position: relative;
     -webkit-box-shadow: 5px 5px 5px 3px #000000; 
     box-shadow: 5px 5px 5px 3px #000000;
+
 }
 
 
@@ -87,4 +88,35 @@ body{
     z-index: 1000;
     display: none;
 
+}
+
+#img-101 {
+    display: block;
+    width: 30vmin;
+    margin: auto;
+    padding: 3vmin;
+    user-select: none;
+}
+
+#description-101{
+    width: 40vmin;
+    margin: auto;
+    color: cornsilk;
+    user-select: none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+    
+}
+
+#img-map{
+
+    height: 100%;
+    align-self: center;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.80);
+    user-select: none;
+    z-index: 10100;
+    
 }
