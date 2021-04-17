@@ -78,7 +78,7 @@ body{
     z-index: 1;
 }
 
-#panel-101{
+.panel{
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.80);
@@ -90,7 +90,7 @@ body{
 
 }
 
-#img-101 {
+.panel-image {
     display: block;
     width: 30vmin;
     margin: auto;
@@ -98,7 +98,7 @@ body{
     user-select: none;
 }
 
-#description-101{
+.panel-description{
     width: 40vmin;
     margin: auto;
     color: cornsilk;
@@ -109,7 +109,7 @@ body{
     font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
     
 }
-
+ 
 #img-map{
 
     height: 100%;
@@ -119,4 +119,16 @@ body{
     user-select: none;
     z-index: 10100;
     
+}
+
+.test{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.80);
+    position: absolute;
+    top: 0;
+    left:0;
+    z-index: 1000;
+    display: none;
+
 }
